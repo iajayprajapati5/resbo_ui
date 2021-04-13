@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  title = 'ResboUI';
+
+  constructor(private router: Router) {}
+
+  patternLogin = new RegExp("^\/login");
+  getRoleUrl(){
+    if (this.patternLogin.test(this.router.url)){
+      return 'login';
+    } else {
+      return 'user';
+    }
+  }
 }

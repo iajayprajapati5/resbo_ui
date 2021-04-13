@@ -1,0 +1,16 @@
+<div class="main-container" [class.resbo-is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="primary" class="resbo-main-toolbar bg-dark text-light">
+    <button class="btn text-light" (click)="snav.toggle()" style="background-color: transparent;"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></button>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav class="bg-light shadow" #snav [mode]="getSideNavMode()" [fixedInViewport]="mobileQuery.matches" [fixedTopGap]="getTopGap()" style="min-width: 200px;" [opened]="sideNavOpenedStatus">
+      <div class="px-2">
+          <div class="cursor-pointer dropdown-item"  routerLink="/products/home" [routerLinkActive]="['side-nav-active']">Menu Items!</div>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
