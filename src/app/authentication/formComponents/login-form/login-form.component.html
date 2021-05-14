@@ -1,0 +1,41 @@
+<div style="background-image: url('/assets/images/loginBG.png'); background-repeat: no-repeat; background-size: cover;">
+	<div class="container-fluid">
+		<div class="row" style="height: 100vh;">
+			<div class="col-md-8 d-none d-md-block bg-light">
+
+			</div>
+			<div class="col-md-4 col-sm-12 px-md-5" style="background-color: #000000cf; padding-top: 20vh;">
+				<div class="text-center text-primary">
+					<img src="/assets/images/SuryaLogo.png" alt="Surya Traders" style="max-width: 100%;">
+                    <div class="h3 text-light" style="padding-top: 20px; padding-bottom: 17px;">Log In</div>
+				</div>
+				<form #loginForm="ngForm">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Username" name="username" required #usernameRef="ngModel" [(ngModel)]="userName"
+              [ngClass]="{'is-invalid': usernameRef.invalid && (usernameRef.dirty || usernameRef.touched)}">
+            <div *ngIf="usernameRef.invalid && (usernameRef.dirty || usernameRef.touched)" class="alert alert-danger border-danger p-0">
+              <small *ngIf="usernameRef.errors?.required">
+                Username Required.
+              </small>
+            </div>
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" placeholder="Password"  name="password" required #passwordRef="ngModel" [(ngModel)]="password"
+              [ngClass]="{'is-invalid': passwordRef.invalid && (passwordRef.dirty || passwordRef.touched)}">
+            <div *ngIf="passwordRef.invalid && (passwordRef.dirty || passwordRef.touched)" class="alert alert-danger border-danger p-0">
+              <small *ngIf="passwordRef.errors?.required">
+                Password Required.
+              </small>
+            </div>
+					</div>
+					<div class="form-group pt-3">
+						<button type="submit" class="btn btn-primary form-control text-light" [disabled]="loginForm.invalid" (click)="doLoginUser()">Log In</button>
+					</div>
+					<div class="form-group">
+						<a class="form-control btn btn-light text-dark" (click)="showSignupForm()">Create account</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

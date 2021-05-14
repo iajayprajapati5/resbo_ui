@@ -1,0 +1,65 @@
+<!-- DELETE MODAL -->
+<div class="backdrop" [style.display]="showDeleteWarning"></div>
+<div class="modal" tabindex="-1" role="dialog" [style.display]="showDeleteWarning">
+    <div class="modal-dialog modal-dialog-centered" role="document" >
+      <div class="modal-content shadow-lg">
+        <div class="modal-header p-0 py-1 bg-dark text-light">
+          <div class="mx-auto"><b>Delete Advertise</b></div>
+        </div>
+        <div class="modal-body" *ngIf="showDeleteWarning=='block'">
+            <div class="row m-0">
+                <div class="col-12 text-center pb-2">
+                    Do you want to delete selected advertise?
+                </div>
+                <div class="col-12 text-center ">
+                    <button type="submit" class="btn btn-outline-secondary mr-2" (click)="submitDeleteItem()">Yes</button>
+                    <button class="btn btn-primary" (click)="hideDeleteWarning()">No</button>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- DELETE MODAL END -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 pt-3 pt-md-4">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-6 col-md-2 px-1 pb-2">
+            <button class="btn btn-outline-light text-secondary w-100 add-new-advertise" title="Add New Advertise" (click)="goToAddNewAdvertise()">
+              <i class="fa fa-plus-circle" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="col-6 col-md-2 px-1 pb-2 advertise-item" *ngFor="let item of myAdvertiseList">
+            <div class="bg-dark text-light px-2 py-1 my-advertise-action">
+              <span class="text-light mr-2 cursor-pointer" (click)="goToUpdateForm(item.id)">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+              </span>
+              <span class="text-light cursor-pointer" (click)="displayDeleteWarning(item)">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </span>
+            </div>
+            <div class="card p-1 p-md-2 cursor-pointer" (click)="viewAdvertiseDetails(item.id)">
+              <img class="card-image" [src]="item.imageName" alt="{{ item.name }}">
+              <div class="card-body p-0">
+                <h6 class="text-truncate text-primary">{{ item.name }}</h6>
+                <div class="container-fluid mb-2">
+                  <div class="row text-secondary" style="line-height: 0.8rem;">
+                    <div class="col-6 p-0 text-left card-body-text-wrap">
+                      <small>₹ {{ item.price }}</small>
+                    </div>
+                    <div class="col-6 p-0 text-right card-body-text-wrap">
+                      <small>{{ item.genre }}</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

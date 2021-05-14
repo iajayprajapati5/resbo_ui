@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-main-login',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainLoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthenticationService) { }
 
   ngOnInit(): void {
+    this.authService.loginScreenPage.next("login");
+    this.getLoginScreenFormName();
   }
 
+  loginScreenForm: string = "login";
+  getLoginScreenFormName(){
+    this.authService.loginScreenPage.subscribe(screen => {
+      this.loginScreenForm = screen;
+    });
+  }
 }

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
@@ -27,13 +27,15 @@
     "ngx-perfect-scrollbar": "^10.1.0",
     "ngx-spinner": "^11.0.1",
     "popper.js": "^1.16.1",
+    "primeicons": "^4.1.0",
+    "primeng": "^11.4.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1102.8",
-    "@angular/cli": "~11.2.8",
+    "@angular/cli": "^11.0.0",
     "@angular/compiler-cli": "~11.2.9",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",

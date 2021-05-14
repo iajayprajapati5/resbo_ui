@@ -1,0 +1,39 @@
+<div class="bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 py-2 bg-light">
+        <form #searchAdvertise="ngForm">
+          <div class="form-group m-0">
+            <input class="form-control" name="searchKey" type="text" placeholder="Search Books" [(ngModel)]="searchkey">
+            <button class="btn btn-primary btn-relative" type="submit" (click)="fetchAdvertiseList()">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row pt-2 pt-sm-3 mx-1">
+    <div class="col-12 pb-2 px-1 text-secondary" *ngIf="advertiseList.length"><small>Found {{ advertiseList.length }} Books</small></div>
+    <div class="col-6 col-sm-2 px-1 pb-2" *ngFor="let item of advertiseList">
+      <div class="card p-1 p-sm-2 cursor-pointer" (click)="viewDetailAdvertiseData(item.id)">
+        <img class="card-image" [src]="item.image_name" alt="Card image cap">
+        <div class="card-body p-0">
+          <h6 class="text-truncate text-primary">{{ item.name }}</h6>
+          <div class="container-fluid mb-2">
+            <div class="row text-secondary" style="line-height: 0.8rem;">
+              <div class="col-6 p-0 text-left card-body-text-wrap">
+                <small>₹ {{ item.price }}</small>
+              </div>
+              <div class="col-6 p-0 text-right card-body-text-wrap">
+                <small>{{ item.genre }}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

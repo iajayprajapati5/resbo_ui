@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 p-1 p-sm-3 shadow-sm mt-1 mt-sm-4">
+      <div class="row">
+        <div class="col-12 col-sm-6">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12 text-center">
+                <div class="rounded img-thumbnail">
+                  <img class="detail-image" [src]="advertiseDetails.image">
+                </div>
+              </div>
+              <div class="col-12 text-secondary mt-2 mt-sm-3">
+                <small class="d-block">
+                  Advertised On: {{advertiseDetails.created_at}}
+                </small>
+                <small class="d-block">
+                  Advertised From: {{advertiseDetails.address}}
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 px-4 px-sm-5">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12 h2 text-truncate" [title]="advertiseDetails.name">
+                {{advertiseDetails.name}}
+              </div>
+              <div class="col-12">
+                <span class="badge badge-primary">{{advertiseDetails.genre}}</span>
+              </div>
+              <div class="col-12 border-bottom py-1 py-sm-1">
+                <strong class="lead font-weight-bold">Rs. {{advertiseDetails.price}}</strong><br>
+                <small class="text-success">Exclusive of any other charges</small>
+              </div>
+              <div class="col-12 pt-2 pt-sm-3 pb-3 pb-sm-5 border-bottom">
+                <blockquote class="blockquote mb-0">
+                  Description
+                </blockquote>
+                <span class="lead" style="font-size: inherit !important;">
+                  {{advertiseDetails.description}}
+                </span>
+              </div>
+              <div class="col-12 pt-3" *ngIf="advertiseDetails.user_id && getLoggedInUser()!=advertiseDetails.user_id">
+                <button class="btn btn-primary w-100" *ngIf="!advertiseDetails.user_interested" (click)="showIntersetInAdvertise()">Show Interest</button>
+                <button class="btn btn-outline-danger w-100" *ngIf="advertiseDetails.user_interested" (click)="removeIntersetInAdvertise()">Remove Interest</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

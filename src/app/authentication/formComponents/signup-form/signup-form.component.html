@@ -1,0 +1,79 @@
+<div style="background-image: url('/assets/images/loginBG.png'); background-repeat: no-repeat; background-size: cover;">
+	<div class="container-fluid">
+		<div class="row" style="min-height: 100vh;">
+			<div class="col-md-8 d-none d-md-block bg-light">
+
+			</div>
+			<div class="col-md-4 col-sm-12 px-md-3 header-pt" style="background-color: #000000cf; padding-top: 10vh;">
+				<div class="text-center mb-3 text-primary">
+          <img src="/assets/images/SuryaLogo.png" alt="Surya Traders" style="max-width: 100%;">
+          <div class="h3 text-light" style="padding-top: 20px; padding-bottom: 10px;">Sign Up</div>
+				</div>
+				<form #signupForm="ngForm">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-6 p-1">
+                <div class="form-group mb-2">
+                  <input type="text" class="form-control" placeholder="First name" name="firstname" required #firstnameRef="ngModel" [(ngModel)]="signupFormData.firstname"
+                    [ngClass]="{'is-invalid': firstnameRef.invalid && (firstnameRef.dirty || firstnameRef.touched)}">
+                </div>
+              </div>
+              <div class="col-6 p-1">
+                <div class="form-group mb-2">
+                  <input type="text" class="form-control" placeholder="Last name" name="lastname" required #lastnameRef="ngModel" [(ngModel)]="signupFormData.lastname"
+                    [ngClass]="{'is-invalid': lastnameRef.invalid && (lastnameRef.dirty || lastnameRef.touched)}">
+                </div>
+              </div>
+              <div class="col-6 p-1">
+                <div class="form-group mb-2">
+                  <input type="text" class="form-control" placeholder="Email" name="email" required #emailRef="ngModel" [(ngModel)]="signupFormData.email"
+                    [ngClass]="{'is-invalid': emailRef.invalid && (emailRef.dirty || emailRef.touched)}">
+                </div>
+              </div>
+              <div class="col-6 p-1">
+                <div class="form-group mb-2">
+                  <input type="text" class="form-control" placeholder="Mobile" name="mobile" maxlength="10" minlength="10" required #mobileRef="ngModel" [(ngModel)]="signupFormData.mobile"
+                    [ngClass]="{'is-invalid': mobileRef.invalid && (mobileRef.dirty || mobileRef.touched)}">
+                </div>
+              </div>
+              <div class="col-6 p-1">
+                <div class="form-group mb-2">
+                  <input type="text" class="form-control" placeholder="Address" name="address" required #addressRef="ngModel" [(ngModel)]="signupFormData.address"
+                    [ngClass]="{'is-invalid': addressRef.invalid && (addressRef.dirty || addressRef.touched)}">
+                </div>
+              </div>
+              <div class="col-6 p-1">
+                <div class="form-group mb-2">
+                  <input type="text" class="form-control" placeholder="Pin Code" name="pincode" minlength="6" maxlength="6" required #pincodeRef="ngModel" [(ngModel)]="signupFormData.pincode"
+                    [ngClass]="{'is-invalid': pincodeRef.invalid && (pincodeRef.dirty || pincodeRef.touched)}">
+                </div>
+              </div>
+              <div class="col-6 p-1">
+                <div class="form-group mb-2">
+                  <input type="password" class="form-control" placeholder="Password" name="password" required #passwordRef="ngModel" [(ngModel)]="signupFormData.password" mustMatch="confpassword" reverse="true"
+                    [ngClass]="{'is-invalid': passwordRef.invalid && (passwordRef.dirty || passwordRef.touched)}">
+                </div>
+              </div>
+              <div class="col-6 p-1">
+                <div class="form-group mb-2">
+                  <input type="password" class="form-control" placeholder="Confirm password" name="confpassword" required #confirmPassRef="ngModel" [(ngModel)]="signupFormData.confirmPassword" mustMatch="password">
+                  <div class="alert alert-danger border-danger p-0" [hidden]="confirmPassRef.valid || (confirmPassRef.pristine && !signupForm.submitted)">
+                    <small *ngIf="confirmPassRef.errors?.mustMatch">
+                      Password mismatch
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group mb-2 pt-3">
+            <button type="button" class="btn btn-primary form-control text-light" (click)="doUserSignup()" [disabled]="signupForm.invalid">Sign Up</button>
+          </div>
+					<div class="form-group mb-2" style="padding-bottom: 5vH;">
+						<a class="form-control btn btn-light text-dark" (click)="showLoginForm()">Log In</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

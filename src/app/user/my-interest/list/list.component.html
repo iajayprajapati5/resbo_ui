@@ -1,0 +1,30 @@
+<div class="container">
+  <div *ngIf="myInterestAdvertiseList.length; else noInterestTemplate" class="row pt-2 pt-sm-3 mx-1">
+    <div class="col-6 col-sm-2 px-1 pb-2" *ngFor="let item of myInterestAdvertiseList">
+      <div class="card p-1 p-sm-2 cursor-pointer" style="overflow: hidden;" (click)="viewAdvertiseDetails(item.id)">
+        <div class="finalised-banner bg-success text-light shadow" *ngIf="item.finalisedToMe"><b>Finalised</b></div>
+        <img class="card-image" [src]="item.image_name" [alt]="item.name">
+        <div class="card-body p-0">
+          <h6 class="text-truncate text-primary">{{ item.name }}</h6>
+          <div class="container-fluid mb-2">
+            <div class="row text-secondary" style="line-height: 0.8rem;">
+              <div class="col-6 p-0 text-left card-body-text-wrap">
+                <small>₹ {{ item.price }}</small>
+              </div>
+              <div class="col-6 p-0 text-right card-body-text-wrap">
+                <small>{{ item.genre }}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #noInterestTemplate>
+    <div class="col-12 p-2">
+      <div class="card shadow-sm text-center p-5 text-secondary">
+        You have not shown interest in any advertise!
+      </div>
+    </div>
+  </ng-template>
+</div>

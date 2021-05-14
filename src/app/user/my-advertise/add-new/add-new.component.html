@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-6 offset-md-3">
+      <div class="card shadow m-2 my-md-5 py-4 text-center">
+        <form #addAdvertiseForm="ngForm">
+          <div class="lead">Add Advertise</div>
+          <div class="form-group text-left px-2 px-md-5">
+            <label class="form-label mb-0">Name</label>
+            <input type="text" class="form-control" placeholder="Name" name="name" #nameRef="ngModel" required [(ngModel)]="advertiseDetails.name"
+              [ngClass]="{'is-invalid': nameRef.invalid && (nameRef.dirty || nameRef.touched)}">
+          </div>
+          <div class="form-group text-left px-2 px-md-5">
+            <label class="form-label mb-0">Description</label>
+            <textarea type="text" class="form-control" placeholder="Description" name="description" required #descriptionRef="ngModel" [(ngModel)]="advertiseDetails.description"
+              [ngClass]="{'is-invalid': descriptionRef.invalid && (descriptionRef.dirty || descriptionRef.touched)}"></textarea>
+          </div>
+          <div class="form-group text-left px-2 pl-md-5 float-left w-50">
+            <label class="form-label mb-0">Price (Rs)</label>
+            <input type="text" class="form-control" placeholder="Price" name="price" #priceRef="ngModel" required [(ngModel)]="advertiseDetails.price"
+              pattern="^[0-9]+$" [ngClass]="{'is-invalid': priceRef.invalid && (priceRef.dirty || priceRef.touched)}">
+          </div>
+          <div class="form-group text-left px-2 pr-md-5 float-left w-50">
+            <label class="form-label mb-0">Genre</label>
+            <input type="text" class="form-control" placeholder="Genre" name="genre" #genreRef="ngModel" required [(ngModel)]="advertiseDetails.genre"
+              [ngClass]="{'is-invalid': genreRef.invalid && (genreRef.dirty || genreRef.touched)}">
+          </div>
+          <div class="form-group text-left px-2 px-md-5">
+            <label class="form-label mb-0">Image</label>
+            <input type="file" class="btn form-control-file" placeholder="Name" name="image" required (change)="setImageData($event)">
+          </div>
+          <div class="text-center">
+            <button class="btn btn-primary mr-2" type="submit" (click)="addNewAdvertise()" [disabled]="addAdvertiseForm.invalid || !this.advertiseDetails.image">Add</button>
+            <button class="btn btn-outline-danger mr-2" type="reset" (click)="formReset(addAdvertiseForm)">Reset</button>
+            <button class="btn btn-outline-secondary" type="button" (click)="goToMyAdvertiseListPage()">Back</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
