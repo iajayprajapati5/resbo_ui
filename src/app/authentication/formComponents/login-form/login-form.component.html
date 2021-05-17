@@ -11,9 +11,9 @@
               <span>ReSBO</span>
             </strong>
           </div>
-          <div class="h3 text-light" style="padding-top: 20px; padding-bottom: 17px;">Log In</div>
+          <div class="h3 text-light" style="padding-top: 20px; padding-bottom: 17px;">{{ formType=='login' ? 'Log In' : 'Forgot Password'}}</div>
 				</div>
-				<form #loginForm="ngForm">
+				<form #loginForm="ngForm" *ngIf="formType=='login'; else forgotPass">
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="Username" name="username" required #usernameRef="ngModel" [(ngModel)]="userName"
               [ngClass]="{'is-invalid': usernameRef.invalid && (usernameRef.dirty || usernameRef.touched)}">
@@ -38,7 +38,29 @@
 					<div class="form-group">
 						<a class="form-control btn btn-light text-dark" (click)="showSignupForm()">Create account</a>
 					</div>
+          <div class="form-group text-center">
+            <a class="cursor-pointer text-light" (click)="showForgotPassword()">Forgot Password?</a>
+          </div>
 				</form>
+        <ng-template #forgotPass>
+          <form #forgotPassForm="ngForm">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Username" name="username" required #usernameRef="ngModel" [(ngModel)]="userName"
+                [ngClass]="{'is-invalid': usernameRef.invalid && (usernameRef.dirty || usernameRef.touched)}">
+              <div *ngIf="usernameRef.invalid && (usernameRef.dirty || usernameRef.touched)" class="alert alert-danger border-danger p-0">
+                <small *ngIf="usernameRef.errors?.required">
+                  Username Required.
+                </small>
+              </div>
+            </div>
+            <div class="form-group pt-3">
+              <button type="submit" class="btn btn-primary form-control text-light" [disabled]="forgotPassForm.invalid" (click)="getPasswordResetLink()">Get Reset Link</button>
+            </div>
+            <div class="form-group">
+              <a class="form-control btn btn-light text-dark" (click)="showLoginForm()">Log In</a>
+            </div>
+          </form>
+        </ng-template>
 			</div>
 		</div>
 	</div>

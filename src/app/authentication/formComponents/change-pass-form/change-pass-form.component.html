@@ -1,1 +1,47 @@
-<p>change-pass-form works!</p>
+<div style="background-image: url('/assets/images/loginBG.png'); background-repeat: no-repeat; background-size: cover;">
+	<div class="container-fluid">
+		<div class="row" style="min-height: 100vh;">
+			<div class="col-md-8 d-none d-md-block bg-light background-img">
+
+			</div>
+			<div class="col-md-4 col-sm-12 px-md-3 header-pt" style="background-color: #000000cf; padding-top: 10vh;">
+				<div class="text-center mb-3 text-primary">
+          <div class="text-primary" style="font-family: 'Brush Script MT', cursive; color: #275ea3; font-size: 3rem;">
+            <strong>
+              <span>ReSBO</span>
+            </strong>
+          </div>
+          <div class="h3 text-light" style="padding-top: 20px; padding-bottom: 10px;">Reset Password</div>
+				</div>
+				<form #resetPasswordForm="ngForm">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12 px-2 px-md-5">
+                <div class="form-group mb-2">
+                  <input type="password" class="form-control" placeholder="Password" name="password" required #passwordRef="ngModel" [(ngModel)]="newPassword" mustMatch="confpassword" reverse="true"
+                    [ngClass]="{'is-invalid': passwordRef.invalid && (passwordRef.dirty || passwordRef.touched)}">
+                </div>
+              </div>
+              <div class="col-12 px-2 px-md-5">
+                <div class="form-group mb-2">
+                  <input type="password" class="form-control" placeholder="Confirm password" name="confpassword" required #confirmPassRef="ngModel" [(ngModel)]="confirmPassword" mustMatch="password">
+                  <div class="alert alert-danger border-danger p-0" [hidden]="confirmPassRef.valid || (confirmPassRef.pristine && !resetPasswordForm.submitted)">
+                    <small *ngIf="confirmPassRef.errors?.mustMatch">
+                      Password mismatch
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group mb-2 pt-3 px-2 px-md-5">
+            <button type="submit" class="btn btn-primary form-control text-light" (click)="submitPasswordChange()" [disabled]="resetPasswordForm.invalid">Change Password</button>
+          </div>
+					<div class="form-group mb-2 px-2 px-md-5" style="padding-bottom: 5vH;">
+						<a class="form-control btn btn-light text-dark" (click)="showLoginForm()">Log In</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

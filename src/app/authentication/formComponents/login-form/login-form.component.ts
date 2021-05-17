@@ -27,6 +27,24 @@ export class LoginFormComponent implements OnInit {
   }
 
   showSignupForm(){
-    this.authService.loginScreenPage.next("sign-up");
+    this.authService.redirectToSingup();
+  }
+
+  formType: string = "login";
+  showForgotPassword(){
+    this.formType = "forgotPass";
+  }
+
+  getPasswordResetLink(){
+    this.authService.generatePasswordResetToken(this.userName).subscribe((res: any) => {
+      alert(res.message);
+      this.showLoginForm();
+    }, err => {
+
+    })
+  }
+
+  showLoginForm(){
+    this.formType = "login";
   }
 }

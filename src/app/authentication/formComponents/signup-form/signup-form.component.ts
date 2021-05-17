@@ -15,7 +15,7 @@ export class SignupFormComponent implements OnInit {
   }
 
   showLoginForm(){
-    this.authService.loginScreenPage.next("login");
+    this.authService.redirectToLogin();
   }
 
   signupFormData: SignUpData = {

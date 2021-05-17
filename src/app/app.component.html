@@ -1,6 +1,21 @@
-<div *ngIf="getRoleUrl()=='login'">
+<!-- <div *ngIf="getRoleUrl()=='login'">
   <router-outlet></router-outlet>
 </div>
 <div *ngIf="getRoleUrl()=='user'">
   <app-main-user></app-main-user>
+</div> -->
+<div *ngIf="getRoleUrl()=='login'">
+  <ng-container *ngTemplateOutlet="template"></ng-container>
 </div>
+
+<div *ngIf="getRoleUrl()=='user'">
+  <ng-container *ngTemplateOutlet="template2"></ng-container>
+</div>
+
+<ng-template #template>
+  <router-outlet></router-outlet>
+</ng-template>
+
+<ng-template #template2>
+  <app-main-user></app-main-user>
+</ng-template>

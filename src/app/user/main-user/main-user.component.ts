@@ -63,6 +63,33 @@ export class MainUserComponent implements OnInit {
     return this.authServ.loggedInUser.firstname;
   }
 
+  showResetPasswordForm: string = "none";
+  displayResetPasswordForm(){
+    this.showResetPasswordForm = "block";
+  }
+
+  closeResetPasswordForm(){
+    this.showResetPasswordForm = "none";
+    this.clearResetFormValue();
+  }
+
+  clearResetFormValue(){
+    this.currentPassword = this.newPassword = this.confirmNewPassword = "";
+  }
+
+  currentPassword: string = "";
+  newPassword: string = "";
+  confirmNewPassword: string = "";
+  submitChangePassword(){
+    let loggedInUser: number = this.authServ.loggedInUser.id;
+    this.authServ.changePasswordForLoggedInUser(loggedInUser, this.currentPassword, this.newPassword).subscribe((res: any) => {
+      this.closeResetPasswordForm();
+      this.notificationServ.setNotification(res.message, "success");
+    }, err => {
+      this.notificationServ.setNotification(err?.error.message, "danger");
+    })
+  }
+
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }

@@ -1,3 +1,54 @@
+<!-- RESET MODAL -->
+<div class="backdrop" [style.display]="showResetPasswordForm"></div>
+<div class="modal" tabindex="-1" role="dialog" [style.display]="showResetPasswordForm">
+    <div class="modal-dialog modal-dialog-centered" role="document" >
+      <div class="modal-content shadow-lg">
+        <div class="modal-header p-0 py-1 bg-dark text-light">
+          <div class="mx-auto"><b>Reset Password</b></div>
+        </div>
+        <div class="modal-body" *ngIf="showResetPasswordForm=='block'">
+            <div class="row m-0">
+                <div class="col-12 text-center pb-2">
+                  <form #resetPasswordForm="ngForm">
+                    <div class="container-fluid">
+                      <div class="row">
+                        <div class="col-12 px-2 px-md-5 mb-2">
+                          <div class="form-group mb-2">
+                            <input type="password" class="form-control" placeholder="Current Password" name="currentpassword" required #currpasswordRef="ngModel" [(ngModel)]="currentPassword"
+                              [ngClass]="{'is-invalid': currpasswordRef.invalid && (currpasswordRef.dirty || currpasswordRef.touched)}">
+                          </div>
+                        </div>
+                        <div class="col-12 px-2 px-md-5">
+                          <div class="form-group mb-2">
+                            <input type="password" class="form-control" placeholder="Password" name="password" required #passwordRef="ngModel" [(ngModel)]="newPassword" mustMatch="confpassword" reverse="true"
+                              [ngClass]="{'is-invalid': passwordRef.invalid && (passwordRef.dirty || passwordRef.touched)}">
+                          </div>
+                        </div>
+                        <div class="col-12 px-2 px-md-5">
+                          <div class="form-group mb-2">
+                            <input type="password" class="form-control" placeholder="Confirm password" name="confpassword" required #confirmPassRef="ngModel" [(ngModel)]="confirmNewPassword" mustMatch="password">
+                            <div class="alert alert-danger border-danger p-0" [hidden]="confirmPassRef.valid || (confirmPassRef.pristine && !resetPasswordForm.submitted)">
+                              <small *ngIf="confirmPassRef.errors?.mustMatch">
+                                Password mismatch
+                              </small>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 text-center">
+                      <button type="submit" class="btn btn-primary mr-2" [disabled]="resetPasswordForm.invalid" (click)="submitChangePassword()">Change Password</button>
+                      <button class="btn btn-outline-secondary" (click)="closeResetPasswordForm()">Cancel</button>
+                    </div>
+                  </form>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- RESET MODAL END -->
+
 <div class="main-container" [class.resbo-is-mobile]="mobileQuery.matches">
   <mat-toolbar color="primary" class="resbo-main-toolbar bg-dark text-light">
     <div class="col-4">
@@ -14,6 +65,7 @@
           <span style="float: left;">{{ getLoggedInUserName() }}</span>&nbsp;&nbsp;<i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 1.5rem;"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item cursor-pointer" (click)="displayResetPasswordForm()">Change Password</a>
           <a class="dropdown-item cursor-pointer" (click)="logoutUser()">Logout</a>
         </div>
       </div>
@@ -32,6 +84,7 @@
           </a>
         </div>
         <div class="collapse" id="collapseExample" style="padding-left: 2.093rem;">
+          <div (click)="displayResetPasswordForm()"><small>Change Password</small></div>
           <div (click)="logoutUser()"><small>Logout</small></div>
         </div>
       </div>
